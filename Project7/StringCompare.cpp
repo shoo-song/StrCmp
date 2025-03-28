@@ -5,10 +5,6 @@ public:
 	double CheckLength(string a, string b) {
 		double size_a = a.size();
 		double size_b = b.size();
-		double result = 0;
-		if (size_a == size_b) {
-			return 60;
-		}
 		double diff = 0;
 		if (size_a >= size_b) {
 			diff = size_a - size_b;

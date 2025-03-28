@@ -18,9 +18,32 @@ public:
 		}
 		return 0;
 	}
+	double CheckAlpha(string a, string b) {
+		int bmpAlpha_a = 0;
+		int bmpAlpha_b = 0;
+		double same_count = 0;
+		double total_count = 0;
+		for (int i = 0; i < a.size(); i++) {
+			bmpAlpha_a |= 1 << (a[i] - 'A');
+		}
+		for (int j = 0; j < b.size(); j++) {
+			bmpAlpha_b |= 1 << (b[j] - 'A');
+		}
+		for (int k = 0; k < 26; k++) {
+			if (((bmpAlpha_a & 1 << k) != 0) && ((bmpAlpha_b & 1 << k) != 0)) {
+				same_count++;
+				total_count++;
+			}
+			else if (((bmpAlpha_a & 1 << k) != 0) || ((bmpAlpha_b & 1 << k) != 0)) {
+				total_count++;
+			}
+		}
+		return (same_count / total_count) * 40;
+	}
 	double compare(string a, string b) {
 		double result = 0;
 		result += CheckLength(a, b);
+		result += CheckAlpha(a, b);
 		return result;
 	}
 };
